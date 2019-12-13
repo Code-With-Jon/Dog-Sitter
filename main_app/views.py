@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Add the following import
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Dog
 
 
 # Define the home view
@@ -15,21 +16,10 @@ def about(request):
 
 
 def dogs_index(request):
-    return render(request, 'dogs/index.html', {'dogs': Dogs})
-
-# Add the Cat class & list and view function below the imports
-
-
-class Dog:  # Note that parens are optional if not inheriting from another class
-    def __init__(self, name, breed, description, age):
-        self.name = name
-        self.breed = breed
-        self.description = description
-        self.age = age
+    dog = Dog.objects.all()
+    return render(request, 'dogs/index.html', {'dog': dog})
 
 
-Dogs = [
-    Dog('Cody', 'Mixed', 'Very Playful!', 3),
-    Dog('Buddy', 'Golden-Doodle', 'Cuddle Bug', 0),
-    Dog('Raven', 'Shiba Inu', '3 legged trouble maker', 4)
-]
+def dogs_detail(request, dog_id):
+    dog = Dog.objects.get(id=dog_id)
+    return render(request, 'dogs/detail.html', {'dog': dog})
