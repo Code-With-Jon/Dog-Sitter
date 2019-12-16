@@ -21,8 +21,9 @@
                 </ul>
                 <ul class="right">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/dogs">View All Dogs</a></li>
+                    <li><a href="{% url 'about'%}">About</a></li>
+                    <li><a href="{% url 'dogs_create'%}">Add Dog</a></li>
+                    <li><a href="{% url 'index'%}">View All Dogs</a></li>
                 </ul>
             </div>
         </nav>
@@ -31,7 +32,7 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="page-footer">
+    <footer class=" page-footer">
         <div class="right">All Rights Reserved, &copy; 2019 Dog Sitter &nbsp;</div>
     </footer>
 </body>
